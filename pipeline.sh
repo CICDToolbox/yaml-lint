@@ -25,7 +25,7 @@ set -Eeuo pipefail
 # CURRENT_STAGE - The current stage used for the reporting output.                 #
 # -------------------------------------------------------------------------------- #
 
-INSTALL_COMMAND="pip install --quiet pur"
+INSTALL_COMMAND="pip install --quiet yamllint"
 
 TEST_COMMAND='yamllint'
 FILE_TYPE_SEARCH_PATTERN='No Magic Pattern'
@@ -46,7 +46,7 @@ function install_prerequisites
 
     python -m pip install --quiet --upgrade pip
 
-    if ! command -v ${TEST_COMMAND} &> /dev/null
+    if ! pip show ${TEST_COMMAND} &> /dev/null
     then
         if errors=$( ${INSTALL_COMMAND} 2>&1 ); then
             success "${INSTALL_COMMAND}"
